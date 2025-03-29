@@ -10,6 +10,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CursosFormacoes.Domain\CursosFormacoes.Domain.csproj" />
+    <ProjectReference Include="..\CursosFormacoes.Persistence\CursosFormacoes.Persistence.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,9 +1,17 @@
-﻿using Eventos.Application.Dtos.Base;
+﻿using CursosFormacoes.Application.Dtos.Base;
+using System.Text.Json.Serialization;
 
 namespace CursosFormacoes.Application.Dtos.Teacher
 {
     public class TeacherDTO : BaseDTO
     {
-        public string Description { get; set; }
+        [JsonPropertyName("name")]
+        public required string Name { get; set; }
+        [JsonPropertyName("email")]
+        public required string Email { get; set; }
+        [JsonPropertyName("school")]
+        public required string School { get; set; }
+        [JsonPropertyName("school_class")]
+        public required string SchoolClass { get; set; }
     }
 }

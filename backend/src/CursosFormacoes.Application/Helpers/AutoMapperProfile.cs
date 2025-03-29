@@ -2,7 +2,7 @@
 using CursosFormacoes.Application.Dtos.Teacher;
 using CursosFormacoes.Domain.Entities;
 
-namespace Eventos.Application.Helpers
+namespace CursosFormacoes.Application.Helpers
 {
     public class AutoMapperProfile : Profile
     {

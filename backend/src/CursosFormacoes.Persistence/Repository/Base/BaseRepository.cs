@@ -53,12 +53,12 @@ namespace CursosFormacoes.Persistence.Repository.Base
             return dataset.ToList();
         }
 
-        public T FindByID(long id)
+        public T? FindByID(long id)
         {
             return dataset.SingleOrDefault(p => p.Id.Equals(id));
         }
 
-        public T Update(T item)
+        public T? Update(T item)
         {
             var result = dataset.SingleOrDefault(p => p.Id.Equals(item.Id));
             if (result != null)

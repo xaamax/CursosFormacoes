@@ -3,7 +3,7 @@ using CursosFormacoes.Persistence.Context;
 using CursosFormacoes.Persistence.Repository;
 using CursosFormacoes.Persistence.Repository.Base;
 using CursosFormacoes.Persistence.Repository.Interfaces;
-using Eventos.Application;
+using CursosFormacoes.Application;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 

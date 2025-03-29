@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Eventos.Application.Dtos.Base
+namespace CursosFormacoes.Application.Dtos.Base
 {
     public class BaseDTO
     {

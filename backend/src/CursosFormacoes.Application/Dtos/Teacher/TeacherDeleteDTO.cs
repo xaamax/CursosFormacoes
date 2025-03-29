@@ -1,4 +1,4 @@
-﻿using Eventos.Application.Dtos.Base;
+﻿using CursosFormacoes.Application.Dtos.Base;
 
 namespace CursosFormacoes.Application.Dtos.Teacher
 {
