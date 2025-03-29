@@ -1,4 +1,9 @@
+using CursosFormacoes.Application.Interfaces;
 using CursosFormacoes.Persistence.Context;
+using CursosFormacoes.Persistence.Repository;
+using CursosFormacoes.Persistence.Repository.Base;
+using CursosFormacoes.Persistence.Repository.Interfaces;
+using Eventos.Application;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -32,6 +37,12 @@ builder.Services.AddDbContext<DatabaseContext>(options =>
 
 //AutoMapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+//Dependency Injection
+builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+builder.Services.AddScoped<ITeacherRepository, TeacherRepository>();
+
+builder.Services.AddTransient<ITeacherService, TeacherService>();
 
 var app = builder.Build();
 
