@@ -27,6 +27,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CursosFormacoes.Application\CursosFormacoes.Application.csproj" />
     <ProjectReference Include="..\CursosFormacoes.Domain\CursosFormacoes.Domain.csproj" />
+    <ProjectReference Include="..\CursosFormacoes.Persistence\CursosFormacoes.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

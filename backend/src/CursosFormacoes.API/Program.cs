@@ -1,3 +1,5 @@
+using CursosFormacoes.Persistence.Context;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,6 +26,9 @@ builder.Services.AddSwaggerGen(c => {
             }
         });
 });
+
+builder.Services.AddDbContext<DatabaseContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SQLServerConnection")));
 
 var app = builder.Build();
 
