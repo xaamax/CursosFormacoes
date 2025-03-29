@@ -7,6 +7,8 @@ using CursosFormacoes.Application;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using CursosFormacoes.API.Middleware;
+using CursosFormacoes.Application.Services;
+using CursosFormacoes.Application.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 var appName = "CursosFormacoes";
@@ -44,6 +46,7 @@ builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 builder.Services.AddScoped<ITeacherRepository, TeacherRepository>();
 
 builder.Services.AddTransient<ITeacherService, TeacherService>();
+builder.Services.AddTransient<ICourseTrainingService, CourseTrainingService>();
 
 var app = builder.Build();
 

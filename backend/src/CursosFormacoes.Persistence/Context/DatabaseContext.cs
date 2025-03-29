@@ -9,6 +9,7 @@ namespace CursosFormacoes.Persistence.Context
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
 
         public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<CourseTraining> CourseTraining { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -13,8 +13,4 @@
     <ProjectReference Include="..\CursosFormacoes.Persistence\CursosFormacoes.Persistence.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Dtos\" />
-  </ItemGroup>
-
 </Project>
