@@ -21,7 +21,7 @@ namespace CursosFormacoes.Persistence.Context
 
         public void Seed()
         {
-            var userExists = _context.Users.Any(u => u.UserName == "max.souza");
+            var userExists = _context.Users.Any(u => u.UserName == "admin");
 
             if (!userExists)
             {
