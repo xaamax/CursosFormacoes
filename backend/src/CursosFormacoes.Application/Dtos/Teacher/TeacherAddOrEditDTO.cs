@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace Eventos.Application.Dtos.Teacher
+namespace CursosFormacoes.Application.Dtos.Teacher
 {
     public class TeacherAddOrEditDTO
     {
