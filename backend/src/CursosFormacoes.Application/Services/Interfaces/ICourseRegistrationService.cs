@@ -11,9 +11,9 @@ namespace CursosFormacoes.Application.Services.Interfaces
     {
         Task<CourseRegistrationDTO> AddCourseRegistration(CourseRegistrationAddOrEditDTO dto);
         Task<CourseRegistrationDTO[]> GetAllCourseRegistrations();
-        Task<CourseRegistrationDTO> GetCourseRegistrationById(int id);
-        Task<CourseRegistrationDTO> UpdateCourseRegistration(int id, CourseRegistrationAddOrEditDTO dto);
-        Task<CourseRegistrationDTO> InactiveCourseRegistration(int id, CourseRegistrationInativeDTO dto);
+        Task<CourseRegistrationDTO> GetCourseRegistrationById(long id);
+        Task<CourseRegistrationDTO> UpdateCourseRegistration(long id, CourseRegistrationAddOrEditDTO dto);
+        Task<CourseRegistrationDTO> InactiveCourseRegistration(long id, CourseRegistrationInativeDTO dto);
         void DeleteCourseRegistration(long id);
     }
 }

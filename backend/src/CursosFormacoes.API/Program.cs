@@ -44,6 +44,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 //Dependency Injection
 builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 builder.Services.AddScoped<ITeacherRepository, TeacherRepository>();
+builder.Services.AddScoped<ICourseRegistrationRepository, CourseRegistrationRepository>();
 
 builder.Services.AddTransient<ITeacherService, TeacherService>();
 builder.Services.AddTransient<ICourseTrainingService, CourseTrainingService>();

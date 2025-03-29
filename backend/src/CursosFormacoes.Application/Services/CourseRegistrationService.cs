@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Azure;
 using CursosFormacoes.Application.Dtos.CourseRegistration;
 using CursosFormacoes.Application.Services.Interfaces;
 using CursosFormacoes.Domain.Entities;
@@ -9,23 +10,27 @@ namespace CursosFormacoes.Application.Services
     public class CourseRegistrationService : ICourseRegistrationService
     {
         private readonly IBaseRepository<CourseRegistration> _baseRepository;
+        private readonly ICourseRegistrationRepository _courseRegistrationRepository;
         private readonly IMapper _mapper;
 
         public CourseRegistrationService(
             IBaseRepository<CourseRegistration> repository,
+           ICourseRegistrationRepository courseRegistrationRepository,
             IMapper mapper)
         {
             _baseRepository = repository;
+            _courseRegistrationRepository = courseRegistrationRepository;
             _mapper = mapper;
         }
 
-        public Task<CourseRegistrationDTO> AddCourseRegistration(CourseRegistrationAddOrEditDTO dto)
+        public async Task<CourseRegistrationDTO> AddCourseRegistration(CourseRegistrationAddOrEditDTO dto)
         {
             try
             {
                 var model = _mapper.Map<CourseRegistration>(dto);
-                var createdModel = _baseRepository.Create(model);
-                return Task.FromResult(_mapper.Map<CourseRegistrationDTO>(createdModel));
+                _baseRepository.Create(model);
+                var response = await _courseRegistrationRepository.GetCourseRegistrationById(model.Id);
+                return _mapper.Map<CourseRegistrationDTO>(response);
             }
             catch (Exception err)
             {
@@ -45,20 +50,20 @@ namespace CursosFormacoes.Application.Services
             }
         }
 
-        public Task<CourseRegistrationDTO> GetCourseRegistrationById(int id)
+        public async Task<CourseRegistrationDTO> GetCourseRegistrationById(long id)
         {
             try
             {
-                var model = _baseRepository.FindByID(id);
+                var model = await _courseRegistrationRepository.GetCourseRegistrationById(id);
                 if (model == null) throw new Exception("Nenhuma Inscrição encontrada.");
-                return Task.FromResult(_mapper.Map<CourseRegistrationDTO>(model));
+                return _mapper.Map<CourseRegistrationDTO>(model);
             }
             catch (Exception err)
             {
                 throw new Exception(err.Message);
             }
         }
-        public Task<CourseRegistrationDTO> UpdateCourseRegistration(int id, CourseRegistrationAddOrEditDTO dto)
+        public async Task<CourseRegistrationDTO> UpdateCourseRegistration(long id, CourseRegistrationAddOrEditDTO dto)
         {
             try
             {
@@ -67,14 +72,15 @@ namespace CursosFormacoes.Application.Services
                 model.UpdatedAt = DateTime.Now;
                 _mapper.Map(dto, model);
                 var updated = _baseRepository.Update(model);
-                return Task.FromResult(_mapper.Map<CourseRegistrationDTO>(updated));
+                var response = await _courseRegistrationRepository.GetCourseRegistrationById(id);
+                return _mapper.Map<CourseRegistrationDTO>(updated);
             }
             catch (Exception err)
             {
                 throw new Exception(err.Message);
             }
         }
-        public Task<CourseRegistrationDTO> InactiveCourseRegistration(int id, CourseRegistrationInativeDTO dto)
+        public Task<CourseRegistrationDTO> InactiveCourseRegistration(long id, CourseRegistrationInativeDTO dto)
         {
             try
             {

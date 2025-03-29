@@ -12,13 +12,13 @@ namespace CursosFormacoes.Domain.Entities
         [ForeignKey("Teacher")]
         [Column("teacher_id")]
         public long TeacherId { get; set; }
-        public Teacher? Teacher { get; set; }
+        public Teacher Teacher { get; set; }
 
         [Required]
         [ForeignKey("CourseTraining")]
         [Column("course_training_id")]
         public long CourseTrainingId { get; set; }
-        public CourseTraining? CourseTraining { get; set; }
+        public CourseTraining CourseTraining { get; set; }
 
         [Required]
         [Column("registration_status")]
