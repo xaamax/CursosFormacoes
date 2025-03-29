@@ -19,42 +19,42 @@ namespace CursosFormacoes.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllTeachers()
+        public async Task<IActionResult> GetAllCourseTrainings()
         {
             var response = await _courseTrainingService.GetAllCourseTrainings();
             return Ok(response);
         }
 
         [HttpGet("{id}/details")]
-        public async Task<IActionResult> GetTeacherById(int id)
+        public async Task<IActionResult> GetCourseTrainingById(int id)
         {
             var response = await _courseTrainingService.GetCourseTrainingById(id);
             return Ok(response);
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> AddTeacher(CourseTrainingAddOrEditDTO dto)
+        public async Task<IActionResult> AddCourseTraining(CourseTrainingAddOrEditDTO dto)
         {
             var response = await _courseTrainingService.AddCourseTraining(dto);
             return Created("", response); ;
         }
 
         [HttpPut("{id}/update")]
-        public async Task<IActionResult> UpdateTeacher(int id, CourseTrainingAddOrEditDTO dto)
+        public async Task<IActionResult> UpdateCourseTraining(int id, CourseTrainingAddOrEditDTO dto)
         {
             var response = await _courseTrainingService.UpdateCourseTraining(id, dto);
             return Ok(response);
         }
 
         [HttpPatch("{id}/inactive")]
-        public async Task<IActionResult> InactiveTeacher(int id, CourseTrainingDeleteDTO dto)
+        public async Task<IActionResult> InactiveCourseTraining(int id, CourseTrainingDeleteDTO dto)
         {
             var response = await _courseTrainingService.InactiveCourseTraining(id, dto);
             return Ok(response);
         }
 
         [HttpDelete("{id}/delete")]
-        public IActionResult DeleteTeacher(long id)
+        public IActionResult DeleteCourseTraining(long id)
         {
             _courseTrainingService.DeleteCourseTraining(id);
             return NoContent();
