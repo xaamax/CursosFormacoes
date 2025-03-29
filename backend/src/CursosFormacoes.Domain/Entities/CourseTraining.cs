@@ -9,7 +9,7 @@ namespace CursosFormacoes.Domain.Entities
     {
         [Required]
         [Column("title")]
-        public required string title { get; set; }
+        public string? title { get; set; }
         [Column("description")]
         public string? Description { get; set; }
         [Required]

@@ -9,15 +9,15 @@ namespace CursosFormacoes.Domain.Entities
     {
         [Required]
         [Column("name")]
-        public required string Name{ get; set; }
+        public string? Name{ get; set; }
         [Required]
         [Column("email")]
-        public required string Email { get; set; }
+        public string? Email { get; set; }
         [Required]
         [Column("school")]
-        public required string School { get; set; }
+        public string? School { get; set; }
         [Required]
         [Column("school_class")]
-        public required string SchoolClass { get; set; }
+        public string? SchoolClass { get; set; }
     }
 }

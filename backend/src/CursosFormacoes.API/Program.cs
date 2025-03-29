@@ -47,6 +47,7 @@ builder.Services.AddScoped<ITeacherRepository, TeacherRepository>();
 
 builder.Services.AddTransient<ITeacherService, TeacherService>();
 builder.Services.AddTransient<ICourseTrainingService, CourseTrainingService>();
+builder.Services.AddTransient<ICourseRegistrationService, CourseRegistrationService>();
 
 var app = builder.Build();
 

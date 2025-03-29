@@ -10,7 +10,7 @@ namespace CursosFormacoes.Application.Interfaces
         Task<TeacherDTO[]> GetAllTeachers();
         Task<TeacherDTO> GetTeacherById(int id);
         Task<TeacherDTO> UpdateTeacher(int id, TeacherAddOrEditDTO dto);
-        Task<TeacherDTO> InactiveTeacher(int id, TeacherDeleteDTO dto);
+        Task<TeacherDTO> InactiveTeacher(int id, TeacherInativeDTO dto);
         void DeleteTeacher(long id);
     }
 }

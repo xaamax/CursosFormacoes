@@ -2,5 +2,5 @@
 
 namespace CursosFormacoes.Application.Dtos.Teacher
 {
-    public class TeacherDeleteDTO : BaseDeleteDTO { }
+    public class TeacherInativeDTO : BaseInativeDTO { }
 }

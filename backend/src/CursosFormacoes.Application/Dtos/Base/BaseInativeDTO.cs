@@ -2,7 +2,7 @@
 
 namespace CursosFormacoes.Application.Dtos.Base
 {   
-    public class BaseDeleteDTO
+    public class BaseInativeDTO
     {
         [JsonPropertyName("inative")]
         public bool Inative { get; set; }

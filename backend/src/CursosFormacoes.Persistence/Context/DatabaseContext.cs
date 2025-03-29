@@ -9,7 +9,8 @@ namespace CursosFormacoes.Persistence.Context
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
 
         public DbSet<Teacher> Teachers { get; set; }
-        public DbSet<CourseTraining> CourseTraining { get; set; }
+        public DbSet<CourseTraining> CoursesTrainings { get; set; }
+        public DbSet<CourseRegistration> CoursesRegistrations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -33,6 +34,10 @@ namespace CursosFormacoes.Persistence.Context
                         .IsUnique();
                 }
             }
-        }
+
+            modelBuilder.Entity<CourseRegistration>()
+            .Property(p => p.RegistrationStatus)
+            .HasConversion<string>(); // Converte o ENUM para string
+           }
     }
 }

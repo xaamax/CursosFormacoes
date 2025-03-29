@@ -34,7 +34,7 @@ namespace CursosFormacoes.Application
             }
         }
 
-        public Task<TeacherDTO> InactiveTeacher(int id, TeacherDeleteDTO dto)
+        public Task<TeacherDTO> InactiveTeacher(int id, TeacherInativeDTO dto)
         {
             try
             {

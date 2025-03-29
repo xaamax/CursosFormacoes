@@ -8,7 +8,7 @@ namespace CursosFormacoes.Application.Services.Interfaces
         Task<CourseTrainingDTO[]> GetAllCourseTrainings();
         Task<CourseTrainingDTO> GetCourseTrainingById(int id);
         Task<CourseTrainingDTO> UpdateCourseTraining(int id, CourseTrainingAddOrEditDTO dto);
-        Task<CourseTrainingDTO> InactiveCourseTraining(int id, CourseTrainingDeleteDTO dto);
+        Task<CourseTrainingDTO> InactiveCourseTraining(int id, CourseTrainingInativeDTO dto);
         void DeleteCourseTraining(long id);
     }
 }

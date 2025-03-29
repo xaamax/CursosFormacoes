@@ -1,100 +1,96 @@
 ﻿using AutoMapper;
-using CursosFormacoes.Application.Dtos.CourseTraining;
+using CursosFormacoes.Application.Dtos.CourseRegistration;
 using CursosFormacoes.Application.Services.Interfaces;
 using CursosFormacoes.Domain.Entities;
 using CursosFormacoes.Persistence.Repository.Interfaces;
 
 namespace CursosFormacoes.Application.Services
 {
-    public class CourseTrainingService : ICourseTrainingService
+    public class CourseRegistrationService : ICourseRegistrationService
     {
-        private readonly IBaseRepository<CourseTraining> _baseRepository;
+        private readonly IBaseRepository<CourseRegistration> _baseRepository;
         private readonly IMapper _mapper;
 
-        public CourseTrainingService(
-            IBaseRepository<CourseTraining> repository,
+        public CourseRegistrationService(
+            IBaseRepository<CourseRegistration> repository,
             IMapper mapper)
         {
             _baseRepository = repository;
             _mapper = mapper;
         }
 
-        public Task<CourseTrainingDTO> AddCourseTraining(CourseTrainingAddOrEditDTO dto)
+        public Task<CourseRegistrationDTO> AddCourseRegistration(CourseRegistrationAddOrEditDTO dto)
         {
             try
             {
-                var model = _mapper.Map<CourseTraining>(dto);
+                var model = _mapper.Map<CourseRegistration>(dto);
                 var createdModel = _baseRepository.Create(model);
-                return Task.FromResult(_mapper.Map<CourseTrainingDTO>(createdModel));
+                return Task.FromResult(_mapper.Map<CourseRegistrationDTO>(createdModel));
             }
             catch (Exception err)
             {
                 throw new Exception(err.Message);
             }
         }
-
-        public Task<CourseTrainingDTO[]> GetAllCourseTrainings()
+        public Task<CourseRegistrationDTO[]> GetAllCourseRegistrations()
         {
             try
             {
                 var model = _baseRepository.FindAll();
-                return Task.FromResult(_mapper.Map<CourseTrainingDTO[]>(model));
+                return Task.FromResult(_mapper.Map<CourseRegistrationDTO[]>(model));
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao buscar Cursos/Formaçoes.", ex);
+                throw new Exception("Erro ao buscar Inscrições.", ex);
             }
         }
 
-        public Task<CourseTrainingDTO> GetCourseTrainingById(int id)
+        public Task<CourseRegistrationDTO> GetCourseRegistrationById(int id)
         {
             try
             {
                 var model = _baseRepository.FindByID(id);
-                if (model == null) throw new Exception("Nenhum Curso/Formação encontrado.");
-                return Task.FromResult(_mapper.Map<CourseTrainingDTO>(model));
+                if (model == null) throw new Exception("Nenhuma Inscrição encontrada.");
+                return Task.FromResult(_mapper.Map<CourseRegistrationDTO>(model));
             }
             catch (Exception err)
             {
                 throw new Exception(err.Message);
             }
         }
-
-        public Task<CourseTrainingDTO> UpdateCourseTraining(int id, CourseTrainingAddOrEditDTO dto)
+        public Task<CourseRegistrationDTO> UpdateCourseRegistration(int id, CourseRegistrationAddOrEditDTO dto)
         {
             try
             {
                 var model = _baseRepository.FindByID(id);
-                if (model == null) throw new Exception("Nenhum Curso/Formação encontrado.");
+                if (model == null) throw new Exception("Nenhuma Inscrição encontrada.");
                 model.UpdatedAt = DateTime.Now;
                 _mapper.Map(dto, model);
                 var updated = _baseRepository.Update(model);
-                return Task.FromResult(_mapper.Map<CourseTrainingDTO>(updated));
+                return Task.FromResult(_mapper.Map<CourseRegistrationDTO>(updated));
             }
             catch (Exception err)
             {
                 throw new Exception(err.Message);
             }
         }
-
-        public Task<CourseTrainingDTO> InactiveCourseTraining(int id, CourseTrainingInativeDTO dto)
+        public Task<CourseRegistrationDTO> InactiveCourseRegistration(int id, CourseRegistrationInativeDTO dto)
         {
             try
             {
                 var model = _baseRepository.FindByID(id);
-                if (model == null) throw new Exception("Nenhum Curso/Formação encontrado.");
+                if (model == null) throw new Exception("Nenhuma Inscrição encontrada.");
                 model.UpdatedAt = DateTime.Now;
                 _mapper.Map(dto, model);
                 var updated = _baseRepository.Update(model);
-                return Task.FromResult(_mapper.Map<CourseTrainingDTO>(updated));
+                return Task.FromResult(_mapper.Map<CourseRegistrationDTO>(updated));
             }
             catch (Exception err)
             {
                 throw new Exception(err.Message);
             }
         }
-
-        public void DeleteCourseTraining(long id)
+        public void DeleteCourseRegistration(long id)
         {
             _baseRepository.Delete(id);
         }

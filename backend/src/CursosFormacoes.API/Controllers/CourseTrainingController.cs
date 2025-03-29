@@ -47,7 +47,7 @@ namespace CursosFormacoes.API.Controllers
         }
 
         [HttpPatch("{id}/inactive")]
-        public async Task<IActionResult> InactiveCourseTraining(int id, CourseTrainingDeleteDTO dto)
+        public async Task<IActionResult> InactiveCourseTraining(int id, CourseTrainingInativeDTO dto)
         {
             var response = await _courseTrainingService.InactiveCourseTraining(id, dto);
             return Ok(response);
