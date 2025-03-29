@@ -11,6 +11,7 @@ namespace CursosFormacoes.Persistence.Context
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<CourseTraining> CoursesTrainings { get; set; }
         public DbSet<CourseRegistration> CoursesRegistrations { get; set; }
+        public DbSet<User> Users{ get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

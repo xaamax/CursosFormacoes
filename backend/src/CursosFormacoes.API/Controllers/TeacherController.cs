@@ -1,12 +1,14 @@
 ﻿using AutoMapper;
 using CursosFormacoes.Application.Dtos.Teacher;
 using CursosFormacoes.Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CursosFormacoes.API.Controllers
 {
     [Route("api/teacher")]
     [ApiController]
+    [Authorize("Bearer")]
     public class TeacherController : ControllerBase
     {
         private readonly ITeacherService _teacherService;

@@ -1,12 +1,14 @@
 ﻿using AutoMapper;
 using CursosFormacoes.Application.Dtos.CourseRegistration;
 using CursosFormacoes.Application.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CursosFormacoes.API.Controllers
 {
     [Route("api/course_register")]
     [ApiController]
+    [Authorize("Bearer")]
     public class CourseRegisterController : ControllerBase
     {
         private readonly ICourseRegistrationService _courseRegistrationService;

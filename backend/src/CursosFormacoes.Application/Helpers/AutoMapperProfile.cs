@@ -2,6 +2,7 @@
 using CursosFormacoes.Application.Dtos.CourseRegistration;
 using CursosFormacoes.Application.Dtos.CourseTraining;
 using CursosFormacoes.Application.Dtos.Teacher;
+using CursosFormacoes.Application.Dtos.User;
 using CursosFormacoes.Domain.Entities;
 
 namespace CursosFormacoes.Application.Helpers
@@ -10,6 +11,8 @@ namespace CursosFormacoes.Application.Helpers
     {
         public AutoMapperProfile()
         {
+            CreateMap<User, UserAuthDTO>().ReverseMap();
+
             CreateMap<Teacher, TeacherDTO>().ReverseMap();
             CreateMap<Teacher, TeacherAddOrEditDTO>().ReverseMap();
             CreateMap<Teacher, TeacherInativeDTO>().ReverseMap();
