@@ -6,6 +6,7 @@ using CursosFormacoes.Persistence.Repository.Interfaces;
 using CursosFormacoes.Application;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using CursosFormacoes.API.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 var appName = "CursosFormacoes";
@@ -45,6 +46,9 @@ builder.Services.AddScoped<ITeacherRepository, TeacherRepository>();
 builder.Services.AddTransient<ITeacherService, TeacherService>();
 
 var app = builder.Build();
+
+//Middlewares
+app.UseMiddleware<ExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
