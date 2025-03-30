@@ -3,6 +3,7 @@ using Azure;
 using CursosFormacoes.Application.Dtos.CourseRegistration;
 using CursosFormacoes.Application.Services.Interfaces;
 using CursosFormacoes.Domain.Entities;
+using CursosFormacoes.Domain.Enums;
 using CursosFormacoes.Persistence.Repository.Interfaces;
 
 namespace CursosFormacoes.Application.Services
@@ -37,12 +38,12 @@ namespace CursosFormacoes.Application.Services
                 throw new Exception(err.Message);
             }
         }
-        public Task<CourseRegistrationDTO[]> GetAllCourseRegistrations()
+        public async Task<CourseRegistrationDTO[]> GetAllCourseRegistrations()
         {
             try
             {
-                var model = _baseRepository.FindAll();
-                return Task.FromResult(_mapper.Map<CourseRegistrationDTO[]>(model));
+                var model = await _courseRegistrationRepository.GetAllCourseRegistrations();
+                return _mapper.Map<CourseRegistrationDTO[]>(model);
             }
             catch (Exception ex)
             {
@@ -96,6 +97,33 @@ namespace CursosFormacoes.Application.Services
                 throw new Exception(err.Message);
             }
         }
+
+        public Task<CourseRegistrationDTO> ProgressCourseRegistration(long id, CourseRegistrationProgressDTO dto)
+        {
+            try
+            {
+                var model = _baseRepository.FindByID(id);
+                if (model == null) throw new Exception("Nenhuma Inscrição encontrada.");
+                bool isValidProgress = Enum.GetValues(typeof(CourseRegistrationProgressEnum))
+                                            .Cast<CourseRegistrationProgressEnum>()
+                                            .Any(e => e.GetEnumDescription() == dto.Progress);
+
+                if (!isValidProgress)
+                {
+                    throw new Exception("Progressos permitidos: 'Não Iniciado', 'Em andamento', 'Concluído'.");
+                }
+                model.Progress = dto.Progress;
+                model.CompletedAt = model.Progress.Equals("Concluído") ? DateTime.Now : null;
+                _mapper.Map(dto, model);
+                var updated = _baseRepository.Update(model);
+                return Task.FromResult(_mapper.Map<CourseRegistrationDTO>(updated));
+            }
+            catch (Exception err)
+            {
+                throw new Exception(err.Message);
+            }
+        }
+
         public void DeleteCourseRegistration(long id)
         {
             _baseRepository.Delete(id);

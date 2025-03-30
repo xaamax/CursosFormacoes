@@ -48,11 +48,17 @@ namespace CursosFormacoes.API.Controllers
             return Ok(response);
         }
 
-
         [HttpPatch("{id}/inactive")]
         public async Task<IActionResult> InactiveCourseRegistration(int id, CourseRegistrationInativeDTO dto)
         {
             var response = await _courseRegistrationService.InactiveCourseRegistration(id, dto);
+            return Ok(response);
+        }
+
+        [HttpPatch("{id}/progress")]
+        public async Task<IActionResult> ProgressCourseRegistration(int id, CourseRegistrationProgressDTO dto)
+        {
+            var response = await _courseRegistrationService.ProgressCourseRegistration(id, dto);
             return Ok(response);
         }
 

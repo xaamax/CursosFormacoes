@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
-using CursosFormacoes.Domain.Enums;
 
 namespace CursosFormacoes.Application.Dtos.CourseRegistration
 {
@@ -16,11 +15,5 @@ namespace CursosFormacoes.Application.Dtos.CourseRegistration
         [Required(ErrorMessage = "(*) {0} é obrigatório.")]
         [JsonPropertyName("course_training_id")]
         public long CourseTrainingId { get; set; }
-
-        [Display(Name = "Status Inscrição")]
-        [Required(ErrorMessage = "(*) {0} é obrigatório.")]
-        [JsonPropertyName("registration_status")]
-        [DefaultValue(CourseRegistrationStatusEnum.ABERTAS)]
-        public CourseRegistrationStatusEnum RegistrationStatus { get; set; } = CourseRegistrationStatusEnum.ABERTAS;
     }
 }

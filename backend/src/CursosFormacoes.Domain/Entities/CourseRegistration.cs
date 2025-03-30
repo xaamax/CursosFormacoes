@@ -12,16 +12,19 @@ namespace CursosFormacoes.Domain.Entities
         [ForeignKey("Teacher")]
         [Column("teacher_id")]
         public long TeacherId { get; set; }
-        public Teacher Teacher { get; set; }
+        public Teacher? Teacher { get; set; }
 
         [Required]
         [ForeignKey("CourseTraining")]
         [Column("course_training_id")]
         public long CourseTrainingId { get; set; }
-        public CourseTraining CourseTraining { get; set; }
+        public CourseTraining? CourseTraining { get; set; }
 
         [Required]
-        [Column("registration_status")]
-        public CourseRegistrationStatusEnum RegistrationStatus { get; set; }
+        [Column("progress")]
+        public string? Progress { get; set; }
+
+        [Column("completed_at")]
+        public DateTime? CompletedAt { get; set; }
     }
 }

@@ -25,6 +25,7 @@ namespace CursosFormacoes.Application.Helpers
                 .ForMember(dest => dest.Teacher, opt => opt.MapFrom(src => src.Teacher))
                 .ReverseMap();
             CreateMap<CourseRegistration, CourseRegistrationAddOrEditDTO>().ReverseMap();
+            CreateMap<CourseRegistration, CourseRegistrationProgressDTO>().ReverseMap();
             CreateMap<CourseRegistration, CourseRegistrationInativeDTO>().ReverseMap();
         }
     }

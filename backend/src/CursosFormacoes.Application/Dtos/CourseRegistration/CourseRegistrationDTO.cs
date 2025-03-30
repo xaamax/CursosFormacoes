@@ -13,7 +13,10 @@ namespace CursosFormacoes.Application.Dtos.CourseRegistration
         [JsonPropertyName("course_training")]
         public CourseTrainingDTO CourseTraining { get; set; }
 
-        [JsonPropertyName("registration_status")]
-        public string? RegistrationStatus { get; set; }
+        [JsonPropertyName("progress")]
+        public string? Progress { get; set; }
+
+        [JsonPropertyName("completed_at")]
+        public DateTime? CompletedAt { get; set; }
     }
 }

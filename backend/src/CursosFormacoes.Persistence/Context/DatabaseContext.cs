@@ -1,5 +1,8 @@
-﻿using CursosFormacoes.Domain.Entities;
+﻿using System.ComponentModel;
+using System.Reflection;
+using CursosFormacoes.Domain.Entities;
 using CursosFormacoes.Domain.Entities.Base;
+using CursosFormacoes.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace CursosFormacoes.Persistence.Context
@@ -11,7 +14,7 @@ namespace CursosFormacoes.Persistence.Context
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<CourseTraining> CoursesTrainings { get; set; }
         public DbSet<CourseRegistration> CoursesRegistrations { get; set; }
-        public DbSet<User> Users{ get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -37,8 +40,9 @@ namespace CursosFormacoes.Persistence.Context
             }
 
             modelBuilder.Entity<CourseRegistration>()
-            .Property(p => p.RegistrationStatus)
-            .HasConversion<string>(); // Converte o ENUM para string
-           }
+            .Property(p => p.Progress)
+            .HasDefaultValue("Não iniciado");
+        }
+
+        }
     }
-}

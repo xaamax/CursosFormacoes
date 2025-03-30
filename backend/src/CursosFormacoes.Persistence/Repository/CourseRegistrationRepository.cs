@@ -14,6 +14,16 @@ namespace CursosFormacoes.Persistence.Repository
             _context = context;
         }
 
+        public async Task<CourseRegistration[]> GetAllCourseRegistrations()
+        {
+            IQueryable<CourseRegistration> query = _context.CoursesRegistrations
+                .Include(c => c.Teacher)
+                .Include(c => c.CourseTraining)
+                .AsNoTracking();
+
+            return await query.ToArrayAsync();
+        }
+
         public async Task<CourseRegistration> GetCourseRegistrationById(long id)
         {
             IQueryable<CourseRegistration> query = _context.CoursesRegistrations
