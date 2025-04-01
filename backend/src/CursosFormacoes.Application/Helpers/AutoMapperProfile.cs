@@ -14,19 +14,20 @@ namespace CursosFormacoes.Application.Helpers
             CreateMap<User, UserAuthDTO>().ReverseMap();
 
             CreateMap<Teacher, TeacherDTO>().ReverseMap();
-            CreateMap<Teacher, TeacherAddOrEditDTO>().ReverseMap();
-            CreateMap<Teacher, TeacherInativeDTO>().ReverseMap();
+            CreateMap<Teacher, TeacherAddDTO>().ReverseMap();
+            CreateMap<Teacher, TeacherEditDTO>().ReverseMap();
 
             CreateMap<CourseTraining, CourseTrainingDTO>().ReverseMap();
-            CreateMap<CourseTraining, CourseTrainingAddOrEditDTO>().ReverseMap();
-            CreateMap<CourseTraining, CourseTrainingInativeDTO>().ReverseMap();
+            CreateMap<CourseTraining, CourseTrainingAddDTO>().ReverseMap();
+            CreateMap<CourseTraining, CourseTrainingEditDTO>().ReverseMap();
 
-            CreateMap<CourseRegistration, CourseRegistrationDTO>()
+            CreateMap<CourseRegistration, CourseRegistrationDTO>().ReverseMap();
+            CreateMap<CourseRegistration, CourseRegistrationWithDTO>()
                 .ForMember(dest => dest.Teacher, opt => opt.MapFrom(src => src.Teacher))
                 .ReverseMap();
-            CreateMap<CourseRegistration, CourseRegistrationAddOrEditDTO>().ReverseMap();
+            CreateMap<CourseRegistration, CourseRegistrationAddDTO>().ReverseMap();
+            CreateMap<CourseRegistration, CourseRegistrationEditDTO>().ReverseMap();
             CreateMap<CourseRegistration, CourseRegistrationProgressDTO>().ReverseMap();
-            CreateMap<CourseRegistration, CourseRegistrationInativeDTO>().ReverseMap();
         }
     }
 }

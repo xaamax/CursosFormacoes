@@ -20,7 +20,7 @@ namespace CursosFormacoes.Application
             _mapper = mapper;
         }
 
-        public Task<TeacherDTO> AddTeacher(TeacherAddOrEditDTO dto)
+        public Task<TeacherDTO> AddTeacher(TeacherAddDTO dto)
         {
             try
             {
@@ -34,14 +34,13 @@ namespace CursosFormacoes.Application
             }
         }
 
-        public Task<TeacherDTO> InactiveTeacher(int id, TeacherInativeDTO dto)
+        public Task<TeacherDTO> VisibilityTeacher(int id)
         {
             try
             {
                 var model = _baseRepository.FindByID(id);
                 if (model == null) throw new Exception("Nenhum Professor encontrado.");
-                model.UpdatedAt = DateTime.Now;
-                _mapper.Map(dto, model);
+                model.DisabledAt = model.DisabledAt == null ? DateTime.Now : null;
                 var updated = _baseRepository.Update(model);
                 return Task.FromResult(_mapper.Map<TeacherDTO>(updated));
             }
@@ -78,11 +77,11 @@ namespace CursosFormacoes.Application
             }
         }
 
-        public Task<TeacherDTO> UpdateTeacher(int id, TeacherAddOrEditDTO dto)
+        public Task<TeacherDTO> UpdateTeacher(TeacherEditDTO dto)
         {
             try
             {
-                var model = _baseRepository.FindByID(id);
+                var model = _baseRepository.FindByID(dto.Id);
                 if (model == null) throw new Exception("Nenhum Professor encontrado.");
                 model.UpdatedAt = DateTime.Now;
                 _mapper.Map(dto, model);

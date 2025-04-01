@@ -6,11 +6,11 @@ namespace CursosFormacoes.Application.Interfaces
 {
     public interface ITeacherService
     {
-        Task<TeacherDTO> AddTeacher(TeacherAddOrEditDTO dto);
+        Task<TeacherDTO> AddTeacher(TeacherAddDTO dto);
         Task<TeacherDTO[]> GetAllTeachers();
         Task<TeacherDTO> GetTeacherById(int id);
-        Task<TeacherDTO> UpdateTeacher(int id, TeacherAddOrEditDTO dto);
-        Task<TeacherDTO> InactiveTeacher(int id, TeacherInativeDTO dto);
+        Task<TeacherDTO> UpdateTeacher(TeacherEditDTO dto);
+        Task<TeacherDTO> VisibilityTeacher(int id);
         void DeleteTeacher(long id);
     }
 }

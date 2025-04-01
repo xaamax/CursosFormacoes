@@ -9,61 +9,59 @@ namespace CursosFormacoes.API.Controllers
     [Route("api/course_register")]
     [ApiController]
     [Authorize("Bearer")]
-    public class CourseRegisterController : ControllerBase
+    public class CourseRegistrationController : ControllerBase
     {
         private readonly ICourseRegistrationService _courseRegistrationService;
-        private readonly IMapper _mapper;
 
-        public CourseRegisterController(ICourseRegistrationService courseRegistrationService, IMapper mapper)
+        public CourseRegistrationController(ICourseRegistrationService courseRegistrationService)
         {
-            _mapper = mapper;
             _courseRegistrationService = courseRegistrationService;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllCourseRegistrations()
+        public async Task<IActionResult> CourseRegistrationsGetAll()
         {
             var response = await _courseRegistrationService.GetAllCourseRegistrations();
             return Ok(response);
         }
 
-        [HttpGet("{id}/details")]
-        public async Task<IActionResult> GetCourseRegistrationById(int id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> CourseRegistrationGetById(int id)
         {
             var response = await _courseRegistrationService.GetCourseRegistrationById(id);
             return Ok(response);
         }
 
-        [HttpPost("create")]
-        public async Task<IActionResult> AddCourseRegistration(CourseRegistrationAddOrEditDTO dto)
+        [HttpPost]
+        public async Task<IActionResult> CourseRegistrationAdd([FromBody] CourseRegistrationAddDTO dto)
         {
             var response = await _courseRegistrationService.AddCourseRegistration(dto);
             return Created("", response); ;
         }
 
-        [HttpPut("{id}/update")]
-        public async Task<IActionResult> UpdateCourseRegistration(int id, CourseRegistrationAddOrEditDTO dto)
+        [HttpPut]
+        public async Task<IActionResult> CourseRegistrationUpdate([FromBody] CourseRegistrationEditDTO dto)
         {
-            var response = await _courseRegistrationService.UpdateCourseRegistration(id, dto);
+            var response = await _courseRegistrationService.UpdateCourseRegistration(dto);
             return Ok(response);
         }
 
-        [HttpPatch("{id}/inactive")]
-        public async Task<IActionResult> InactiveCourseRegistration(int id, CourseRegistrationInativeDTO dto)
+        [HttpPatch("{id}/visibility")]
+        public async Task<IActionResult> CourseRegistrationVisibility(int id)
         {
-            var response = await _courseRegistrationService.InactiveCourseRegistration(id, dto);
+            var response = await _courseRegistrationService.VisibilityAtCourseRegistration(id);
             return Ok(response);
         }
 
         [HttpPatch("{id}/progress")]
-        public async Task<IActionResult> ProgressCourseRegistration(int id, CourseRegistrationProgressDTO dto)
+        public async Task<IActionResult> CourseRegistrationProgress(int id, [FromBody] CourseRegistrationProgressDTO dto)
         {
             var response = await _courseRegistrationService.ProgressCourseRegistration(id, dto);
             return Ok(response);
         }
 
-        [HttpDelete("{id}/delete")]
-        public IActionResult DeleteCourseRegistration(long id)
+        [HttpDelete("{id}")]
+        public IActionResult CourseRegistrationDelete(long id)
         {
             _courseRegistrationService.DeleteCourseRegistration(id);
             return NoContent();

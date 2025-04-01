@@ -2,6 +2,7 @@
 using CursosFormacoes.Application.Dtos.CourseTraining;
 using CursosFormacoes.Application.Services.Interfaces;
 using CursosFormacoes.Domain.Entities;
+using CursosFormacoes.Persistence.Repository.Base;
 using CursosFormacoes.Persistence.Repository.Interfaces;
 
 namespace CursosFormacoes.Application.Services
@@ -12,14 +13,14 @@ namespace CursosFormacoes.Application.Services
         private readonly IMapper _mapper;
 
         public CourseTrainingService(
-            IBaseRepository<CourseTraining> repository,
+            IBaseRepository<CourseTraining> baseRepository,
             IMapper mapper)
         {
-            _baseRepository = repository;
+            _baseRepository = baseRepository;
             _mapper = mapper;
         }
 
-        public Task<CourseTrainingDTO> AddCourseTraining(CourseTrainingAddOrEditDTO dto)
+        public Task<CourseTrainingDTO> AddCourseTraining(CourseTrainingAddDTO dto)
         {
             try
             {
@@ -60,11 +61,11 @@ namespace CursosFormacoes.Application.Services
             }
         }
 
-        public Task<CourseTrainingDTO> UpdateCourseTraining(int id, CourseTrainingAddOrEditDTO dto)
+        public Task<CourseTrainingDTO> UpdateCourseTraining(CourseTrainingEditDTO dto)
         {
             try
             {
-                var model = _baseRepository.FindByID(id);
+                var model = _baseRepository.FindByID(dto.Id);
                 if (model == null) throw new Exception("Nenhum Curso/Formação encontrado.");
                 model.UpdatedAt = DateTime.Now;
                 _mapper.Map(dto, model);
@@ -77,14 +78,13 @@ namespace CursosFormacoes.Application.Services
             }
         }
 
-        public Task<CourseTrainingDTO> InactiveCourseTraining(int id, CourseTrainingInativeDTO dto)
+        public Task<CourseTrainingDTO> VisibilityCourseTraining(int id)
         {
             try
             {
                 var model = _baseRepository.FindByID(id);
                 if (model == null) throw new Exception("Nenhum Curso/Formação encontrado.");
-                model.UpdatedAt = DateTime.Now;
-                _mapper.Map(dto, model);
+                model.DisabledAt = model.DisabledAt == null ? DateTime.Now : null;
                 var updated = _baseRepository.Update(model);
                 return Task.FromResult(_mapper.Map<CourseTrainingDTO>(updated));
             }

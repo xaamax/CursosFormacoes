@@ -4,7 +4,7 @@ using CursosFormacoes.Application.Helpers;
 
 namespace CursosFormacoes.Application.Dtos.CourseTraining
 {
-    public class CourseTrainingAddOrEditDTO
+    public class CourseTrainingAddDTO
     {
         [Display(Name = "Título")]
         [Required(ErrorMessage = "(*) {0} é obrigatório.")]

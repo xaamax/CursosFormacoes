@@ -3,6 +3,7 @@ using CursosFormacoes.Domain.Entities.Base;
 
 namespace CursosFormacoes.Domain.Entities
 {
+    [Table("users")]
     public class User : BaseEntity
     {
         [Column("username")]

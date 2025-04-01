@@ -21,41 +21,41 @@ namespace CursosFormacoes.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllCourseTrainings()
+        public async Task<IActionResult> CourseTrainingsGetAll()
         {
             var response = await _courseTrainingService.GetAllCourseTrainings();
             return Ok(response);
         }
 
-        [HttpGet("{id}/details")]
-        public async Task<IActionResult> GetCourseTrainingById(int id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> CourseTrainingGetById(int id)
         {
             var response = await _courseTrainingService.GetCourseTrainingById(id);
             return Ok(response);
         }
 
-        [HttpPost("create")]
-        public async Task<IActionResult> AddCourseTraining(CourseTrainingAddOrEditDTO dto)
+        [HttpPost]
+        public async Task<IActionResult> CourseTrainingAdd([FromBody] CourseTrainingAddDTO dto)
         {
             var response = await _courseTrainingService.AddCourseTraining(dto);
             return Created("", response); ;
         }
 
-        [HttpPut("{id}/update")]
-        public async Task<IActionResult> UpdateCourseTraining(int id, CourseTrainingAddOrEditDTO dto)
+        [HttpPut]
+        public async Task<IActionResult> CourseTrainingUpdate([FromBody] CourseTrainingEditDTO dto)
         {
-            var response = await _courseTrainingService.UpdateCourseTraining(id, dto);
+            var response = await _courseTrainingService.UpdateCourseTraining(dto);
             return Ok(response);
         }
 
-        [HttpPatch("{id}/inactive")]
-        public async Task<IActionResult> InactiveCourseTraining(int id, CourseTrainingInativeDTO dto)
+        [HttpPatch("{id}/visibility")]
+        public async Task<IActionResult> CourseTrainingVisibility(int id)
         {
-            var response = await _courseTrainingService.InactiveCourseTraining(id, dto);
+            var response = await _courseTrainingService.VisibilityCourseTraining(id);
             return Ok(response);
         }
 
-        [HttpDelete("{id}/delete")]
+        [HttpDelete("{id}")]
         public IActionResult DeleteCourseTraining(long id)
         {
             _courseTrainingService.DeleteCourseTraining(id);

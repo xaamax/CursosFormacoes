@@ -29,9 +29,6 @@ namespace CursosFormacoes.Persistence.Context
                     // Configura 'created_at' para usar GETDATE() como valor padrão
                     entityBuilder.Property(nameof(BaseEntity.CreatedAt))
                         .HasDefaultValueSql("GETDATE()");
-                    // Configura 'inative' para ter false como valor padrão
-                    entityBuilder.Property(nameof(BaseEntity.Inative))
-                        .HasDefaultValue(false);
                     // 'email' deve ser único
                     modelBuilder.Entity<Teacher>()
                         .HasIndex(c => c.Email)

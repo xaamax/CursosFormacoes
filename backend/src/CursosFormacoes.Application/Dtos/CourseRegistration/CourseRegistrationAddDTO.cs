@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace CursosFormacoes.Application.Dtos.CourseRegistration
 {
-    public class CourseRegistrationAddOrEditDTO
+    public class CourseRegistrationAddDTO
     {
         [Display(Name = "ProfessorID")]
         [Required(ErrorMessage = "(*) {0} é obrigatório.")]

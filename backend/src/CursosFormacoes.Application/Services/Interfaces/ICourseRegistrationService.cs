@@ -9,11 +9,11 @@ namespace CursosFormacoes.Application.Services.Interfaces
 {
     public interface ICourseRegistrationService
     {
-        Task<CourseRegistrationDTO> AddCourseRegistration(CourseRegistrationAddOrEditDTO dto);
+        Task<CourseRegistrationDTO> AddCourseRegistration(CourseRegistrationAddDTO dto);
         Task<CourseRegistrationDTO[]> GetAllCourseRegistrations();
         Task<CourseRegistrationDTO> GetCourseRegistrationById(long id);
-        Task<CourseRegistrationDTO> UpdateCourseRegistration(long id, CourseRegistrationAddOrEditDTO dto);
-        Task<CourseRegistrationDTO> InactiveCourseRegistration(long id, CourseRegistrationInativeDTO dto);
+        Task<CourseRegistrationDTO> UpdateCourseRegistration(CourseRegistrationEditDTO dto);
+        Task<CourseRegistrationDTO> VisibilityAtCourseRegistration(long id);
         Task<CourseRegistrationDTO> ProgressCourseRegistration(long id, CourseRegistrationProgressDTO dto);
         void DeleteCourseRegistration(long id);
     }

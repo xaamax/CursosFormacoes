@@ -4,11 +4,11 @@ namespace CursosFormacoes.Application.Services.Interfaces
 {
     public interface ICourseTrainingService
     {
-        Task<CourseTrainingDTO> AddCourseTraining(CourseTrainingAddOrEditDTO dto);
+        Task<CourseTrainingDTO> AddCourseTraining(CourseTrainingAddDTO dto);
         Task<CourseTrainingDTO[]> GetAllCourseTrainings();
         Task<CourseTrainingDTO> GetCourseTrainingById(int id);
-        Task<CourseTrainingDTO> UpdateCourseTraining(int id, CourseTrainingAddOrEditDTO dto);
-        Task<CourseTrainingDTO> InactiveCourseTraining(int id, CourseTrainingInativeDTO dto);
+        Task<CourseTrainingDTO> UpdateCourseTraining(CourseTrainingEditDTO dto);
+        Task<CourseTrainingDTO> VisibilityCourseTraining(int id);
         void DeleteCourseTraining(long id);
     }
 }

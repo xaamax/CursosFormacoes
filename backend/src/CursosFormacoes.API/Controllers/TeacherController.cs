@@ -21,41 +21,41 @@ namespace CursosFormacoes.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllTeachers()
+        public async Task<IActionResult> TeachersGetAll()
         {
             var response = await _teacherService.GetAllTeachers();
             return Ok(response);
         }
 
-        [HttpGet("{id}/details")]
-        public async Task<IActionResult> GetTeacherById(int id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> TeacherGetById(int id)
         {
             var response = await _teacherService.GetTeacherById(id);
             return Ok(response);
         }
 
-        [HttpPost("create")]
-        public async Task<IActionResult> AddTeacher(TeacherAddOrEditDTO dto)
+        [HttpPost]
+        public async Task<IActionResult> AddTeacher(TeacherAddDTO dto)
         {
             var response = await _teacherService.AddTeacher(dto);
             return Created("", response); ;
         }
 
-        [HttpPut("{id}/update")]
-        public async Task<IActionResult> UpdateTeacher(int id, TeacherAddOrEditDTO dto)
+        [HttpPut]
+        public async Task<IActionResult> UpdateTeacher(TeacherEditDTO dto)
         {
-            var response = await _teacherService.UpdateTeacher(id, dto);
+            var response = await _teacherService.UpdateTeacher(dto);
             return Ok(response);
         }
 
-        [HttpPatch("{id}/inactive")]
-        public async Task<IActionResult> InactiveTeacher(int id, TeacherInativeDTO dto)
+        [HttpPatch("{id}/visibility")]
+        public async Task<IActionResult> TeacherVisibility(int id)
         {
-            var response = await _teacherService.InactiveTeacher(id, dto);
+            var response = await _teacherService.VisibilityTeacher(id);
             return Ok(response);
         }
 
-        [HttpDelete("{id}/delete")]
+        [HttpDelete("{id}")]
         public IActionResult DeleteTeacher(long id)
         {
             _teacherService.DeleteTeacher(id);

@@ -24,7 +24,7 @@ namespace CursosFormacoes.Application.Services
             _mapper = mapper;
         }
 
-        public async Task<CourseRegistrationDTO> AddCourseRegistration(CourseRegistrationAddOrEditDTO dto)
+        public async Task<CourseRegistrationDTO> AddCourseRegistration(CourseRegistrationAddDTO dto)
         {
             try
             {
@@ -43,7 +43,7 @@ namespace CursosFormacoes.Application.Services
             try
             {
                 var model = await _courseRegistrationRepository.GetAllCourseRegistrations();
-                return _mapper.Map<CourseRegistrationDTO[]>(model);
+                return _mapper.Map<CourseRegistrationWithDTO[]>(model);
             }
             catch (Exception ex)
             {
@@ -64,16 +64,16 @@ namespace CursosFormacoes.Application.Services
                 throw new Exception(err.Message);
             }
         }
-        public async Task<CourseRegistrationDTO> UpdateCourseRegistration(long id, CourseRegistrationAddOrEditDTO dto)
+        public async Task<CourseRegistrationDTO> UpdateCourseRegistration(CourseRegistrationEditDTO dto)
         {
             try
             {
-                var model = _baseRepository.FindByID(id);
+                var model = _baseRepository.FindByID(dto.Id);
                 if (model == null) throw new Exception("Nenhuma Inscrição encontrada.");
                 model.UpdatedAt = DateTime.Now;
                 _mapper.Map(dto, model);
                 var updated = _baseRepository.Update(model);
-                var response = await _courseRegistrationRepository.GetCourseRegistrationById(id);
+                var response = await _courseRegistrationRepository.GetCourseRegistrationById(dto.Id);
                 return _mapper.Map<CourseRegistrationDTO>(updated);
             }
             catch (Exception err)
@@ -81,14 +81,13 @@ namespace CursosFormacoes.Application.Services
                 throw new Exception(err.Message);
             }
         }
-        public Task<CourseRegistrationDTO> InactiveCourseRegistration(long id, CourseRegistrationInativeDTO dto)
+        public Task<CourseRegistrationDTO> VisibilityAtCourseRegistration(long id)
         {
             try
             {
                 var model = _baseRepository.FindByID(id);
                 if (model == null) throw new Exception("Nenhuma Inscrição encontrada.");
-                model.UpdatedAt = DateTime.Now;
-                _mapper.Map(dto, model);
+                model.DisabledAt = model.DisabledAt == null ? DateTime.Now : null;
                 var updated = _baseRepository.Update(model);
                 return Task.FromResult(_mapper.Map<CourseRegistrationDTO>(updated));
             }

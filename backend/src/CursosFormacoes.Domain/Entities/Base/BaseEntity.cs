@@ -6,11 +6,11 @@ namespace CursosFormacoes.Domain.Entities.Base
     {
         [Column("id")]
         public long Id { get; set; }
-        [Column("inative")]
-        public bool Inative { get; set; }
         [Column("created_at")]
         public DateTime CreatedAt { get; set; }
         [Column("updated_at")]
         public DateTime? UpdatedAt { get; set; }
+        [Column("disabled_at")]
+        public DateTime? DisabledAt { get; set; }
     }
 }

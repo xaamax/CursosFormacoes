@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace CursosFormacoes.Application.Dtos.Teacher
 {
-    public class TeacherAddOrEditDTO
+    public class TeacherAddDTO
     {
         [Display(Name = "Nome")]
         [Required(ErrorMessage = "(*) {0} é obrigatório.")]
