@@ -26,5 +26,10 @@ namespace CursosFormacoes.Domain.Entities
 
         [Column("completed_at")]
         public DateTime? CompletedAt { get; set; }
+
+        public static implicit operator bool(CourseRegistration v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

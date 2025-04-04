@@ -1,0 +1,236 @@
+.toast-viewport {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    gap: 10px;
+    width: 390px;
+    max-width: 100vw;
+    margin: 0;
+    list-style: none;
+    z-index: 9999;
+    outline: none;
+  }
+  
+  .toast-root {
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 12px 16px;
+    display: grid;
+    grid-template-areas: 'title action' 'description action';
+    grid-template-columns: auto max-content;
+    gap: 8px;
+    align-items: center;
+    border: 1px solid #e5e5e5;
+    animation: slideIn 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  .toast-root[data-state='closed'] {
+    animation: slideOut 100ms ease-in;
+  }
+  
+  .toast-root.destructive {
+    background-color: #fef2f2;
+    border-color: #fecaca;
+  }
+  
+  .toast-title {
+    grid-area: title;
+    font-weight: 500;
+    font-size: 15px;
+    color: #333;
+    margin: 0;
+  }
+  
+  .toast-root.destructive .toast-title {
+    color: #b91c1c;
+  }
+  
+  .toast-description {
+    grid-area: description;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.3;
+    margin: 0;
+  }
+  
+  .toast-root.destructive .toast-description {
+    color: #b91c1c;
+  }
+  
+/* Variante de sucesso */
+.toast-root.success {
+  background-color: #f0fdf4; /* Verde claro de fundo */
+  border-color: #86efac; /* Borda verde */
+}
+
+.toast-root.success .toast-title {
+  color: #166534; /* Verde escuro para o título */
+}
+
+.toast-root.success .toast-description {
+  color: #166534; /* Verde escuro para a descrição */
+  opacity: 0.8;
+}
+
+.toast-root.success .toast-close {
+  color: #4ade80; /* Verde médio para o ícone de fechar */
+}
+
+.toast-root.success .toast-close:hover {
+  color: #16a34a; /* Verde mais escuro no hover */
+}
+
+/* Ícone de sucesso (opcional) */
+/* .toast-root.success::before {
+  content: "✓";
+  display: inline-block;
+  margin-right: 8px;
+  color: #16a34a;
+  font-weight: bold;
+} */
+
+  .toast-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #999;
+    padding: 20px;
+  }
+  
+  .toast-close:hover {
+    color: #666;
+  }
+  
+  .toast-root.destructive .toast-close {
+    color: #fca5a5;
+  }
+  
+  .toast-root.destructive .toast-close:hover {
+    color: #ef4444;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideOut {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+
+/* Posições do toast */
+.toast-viewport {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 390px;
+  max-width: 100vw;
+  margin: 0;
+  list-style: none;
+  z-index: 9999;
+  outline: none;
+  padding: 16px;
+}
+
+.toast-viewport.bottom-right {
+  bottom: 0;
+  right: 0;
+}
+
+.toast-viewport.bottom-left {
+  bottom: 0;
+  left: 0;
+}
+
+.toast-viewport.bottom-center {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.toast-viewport.top-right {
+  top: 0;
+  right: 0;
+}
+
+.toast-viewport.top-left {
+  top: 0;
+  left: 0;
+}
+
+.toast-viewport.top-center {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+  /* Animations for different swipe directions */
+.toast-root[data-swipe="move"][data-swipe-direction="right"] {
+  transform: translateX(var(--radix-toast-swipe-move-x));
+}
+
+.toast-root[data-swipe="move"][data-swipe-direction="left"] {
+  transform: translateX(var(--radix-toast-swipe-move-x));
+}
+
+.toast-root[data-swipe="move"][data-swipe-direction="up"] {
+  transform: translateY(var(--radix-toast-swipe-move-y));
+}
+
+.toast-root[data-swipe="move"][data-swipe-direction="down"] {
+  transform: translateY(var(--radix-toast-swipe-move-y));
+}
+
+.toast-root[data-swipe="cancel"] {
+  transform: translate(0);
+}
+
+/* End swipe animations */
+.toast-root[data-swipe="end"][data-swipe-direction="right"] {
+  animation: swipeOutRight 100ms ease-out;
+}
+
+.toast-root[data-swipe="end"][data-swipe-direction="left"] {
+  animation: swipeOutLeft 100ms ease-out;
+}
+
+.toast-root[data-swipe="end"][data-swipe-direction="up"] {
+  animation: swipeOutUp 100ms ease-out;
+}
+
+.toast-root[data-swipe="end"][data-swipe-direction="down"] {
+  animation: swipeOutDown 100ms ease-out;
+}
+
+@keyframes swipeOutRight {
+  to { transform: translateX(100%); }
+}
+
+@keyframes swipeOutLeft {
+  to { transform: translateX(-100%); }
+}
+
+@keyframes swipeOutUp {
+  to { transform: translateY(-100%); }
+}
+
+@keyframes swipeOutDown {
+  to { transform: translateY(100%); }
+}

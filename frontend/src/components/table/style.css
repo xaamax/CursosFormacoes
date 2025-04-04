@@ -1,0 +1,117 @@
+.table-content {
+  margin: 20px;
+}
+
+.table {
+    margin: 40px 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+  
+  .row {
+    display: flex;
+    width: 100%;
+  }
+  
+  .row:nth-of-type(odd) {
+    background: #e9e9e9;
+  }
+  
+  .row.header {
+    font-weight: 900;
+    color: #ffffff;
+    background: #363636;
+  }
+  
+  .row.header .cell {
+    font-size: 16px;
+  }
+
+  .cell {
+    flex: 1;
+    padding: 10px;
+    text-align: inherit;
+    font-size: 15px;
+  }
+  
+  .details-cell {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .details-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  
+  .detail-item {
+    min-width: calc(33% - 16px);
+  }
+  
+  .btn-details,
+  .btn-delete {
+    color: steelblue;
+    background: transparent;
+    cursor: pointer;
+    border: none;
+    padding: 6px;
+  }
+  
+  .btn-delete {
+    color: red;
+  }
+  
+  @media screen and (max-width: 580px) {
+    body {
+      font-size: 16px;
+      line-height: 22px;
+    }
+  }
+  
+  @media screen and (max-width: 580px) {
+    .table {
+      display: block;
+    }
+  }
+  
+  @media screen and (max-width: 580px) {
+    .row {
+      padding: 14px 0 7px;
+      display: block;
+    }
+  
+    .row.header {
+      padding: 0;
+      height: 6px;
+    }
+  
+    .row.header .cell {
+      display: none;
+    }
+  
+    .row .cell {
+      margin-bottom: 10px;
+    }
+  
+    .row .cell:before {
+      margin-bottom: 3px;
+      content: attr(data-title);
+      min-width: 98px;
+      font-size: 10px;
+      line-height: 10px;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #969696;
+      display: block;
+    }
+  }
+  
+  @media screen and (max-width: 580px) {
+    .cell {
+      padding: 2px 16px;
+      display: block;
+    }
+  }

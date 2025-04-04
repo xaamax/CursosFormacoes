@@ -6,5 +6,8 @@ namespace CursosFormacoes.Persistence.Repository.Interfaces
     {
         Task<CourseRegistration[]> GetAllCourseRegistrations();
         Task<CourseRegistration> GetCourseRegistrationById(long id);
+        Task<object> GetAllTeachersCoursesTrainings();
+        Task<bool> GetByTeacherAndCourse(long teacherId, long courseTrainingId);
+
     }
 }

@@ -1,0 +1,45 @@
+.search-and-buttons {
+  margin: 20px;
+  display: flex;
+  align-items: center; /* Alinha o input e o botão verticalmente */
+  gap: 40px; /* Espaço entre os elementos */
+  flex-wrap: wrap; /* Garante que elementos quebrem para uma nova linha se necessário */
+}
+
+/* Estilização do input */
+.search-and-buttons input {
+  flex: 1; /* Faz o input ocupar o máximo de espaço possível */
+  min-width: 250px; /* Define um tamanho mínimo */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  font-size: 16px;
+}
+
+/* Estilização do botão */
+.btn-include {
+  text-decoration: none;
+  background-color: steelblue;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 15px;
+  white-space: nowrap; /* Impede que o texto quebre */
+  display: inline-block;
+}
+
+.btn-include:hover {
+  background: #5a9bd4;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  .search-and-buttons {
+      flex-direction: column; /* Empilha os elementos */
+      align-items: stretch; /* Faz os elementos ocuparem toda a largura */
+  }
+
+  .btn-include {
+      text-align: center;
+  }
+}

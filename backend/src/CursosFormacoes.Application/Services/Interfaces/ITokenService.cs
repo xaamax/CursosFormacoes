@@ -8,6 +8,8 @@ namespace CursosFormacoes.Application.Services.Interfaces
 
         string GenerateRefreshToken();
 
+        bool ValidateToken(string token);
+
         ClaimsPrincipal GetPrincipalFromExpiredToken(string token);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Text.Json;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CursosFormacoes.API.Middleware
 {
@@ -29,12 +30,13 @@ namespace CursosFormacoes.API.Middleware
             var response = context.Response;
             response.ContentType = "application/json";
             response.StatusCode = (int)HttpStatusCode.InternalServerError;
+            
             var errorResponse = new
             {
                 status = response.StatusCode,
                 message = ex.Message
             };
-            return response.WriteAsync(JsonSerializer.Serialize(errorResponse));
+                return response.WriteAsync(JsonSerializer.Serialize(errorResponse));
         }
     }
 }

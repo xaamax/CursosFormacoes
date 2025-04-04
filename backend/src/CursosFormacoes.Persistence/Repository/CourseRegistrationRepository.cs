@@ -33,5 +33,22 @@ namespace CursosFormacoes.Persistence.Repository
 
             return await query.FirstOrDefaultAsync();
         }
+        public async Task<object> GetAllTeachersCoursesTrainings()
+        {
+            var teachers = await _context.Teachers.AsNoTracking().ToListAsync();
+            var coursesTrainings = await _context.CoursesTrainings.AsNoTracking().ToListAsync();
+
+            return new
+            {
+                teachers,
+                courses_trainings = coursesTrainings
+            };
+        }
+
+        public async Task<bool> GetByTeacherAndCourse(long teacherId, long courseTrainingId)
+        {
+            return await _context.CoursesRegistrations
+            .AnyAsync(e => e.TeacherId == teacherId && e.CourseTrainingId == courseTrainingId);
+        }
     }
 }
