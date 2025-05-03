@@ -19,11 +19,11 @@ interface FormProps {
 const formSchema = z.object({
   teacher_id: z.coerce
     .number()
-    .min(1, { message: "(*) Selecione um professor" }), // Não permite 0
+    .min(1, { message: "(*) Selecione um professor" }),
 
   course_training_id: z.coerce
     .number()
-    .min(1, { message: "(*) Selecione um curso/formação" }), // Não permite 0
+    .min(1, { message: "(*) Selecione um curso/formação" }),
   progress: z.string().optional(),
 });
 
@@ -65,9 +65,8 @@ export const CourseRegistrationForm = ({ defaultValues }: FormProps) => {
         <select
           id="teacher_id"
           {...register("teacher_id")}
-          disabled={!!defaultValues.course_registration?.id}
+          disabled={!!defaultValues.course_registration?.id}          
         >
-          <option value={0}>--- Selecione ---</option>
           {defaultValues.teachers.map(({ id, name }, i) => (
             <option key={i} value={id}>
               {name}
@@ -83,9 +82,8 @@ export const CourseRegistrationForm = ({ defaultValues }: FormProps) => {
         <select
           id="course_training_id"
           {...register("course_training_id")}
-          disabled={!!defaultValues.course_registration?.id}
+          disabled={!!defaultValues.course_registration?.id}          
         >
-          <option value={0}>--- Selecione ---</option>
           {defaultValues.courses_trainings.map(({ id, title }, i) => (
             <option key={i} value={id}>
               {title}
